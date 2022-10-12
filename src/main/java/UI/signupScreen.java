@@ -35,6 +35,7 @@ public class signupScreen extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         passwordTextField = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -51,21 +52,30 @@ public class signupScreen extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         emailTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(234, 221, 255));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_logo-removebg-preview.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(78, 78, 78))
         );
 
         jPanel3.setBackground(new java.awt.Color(103, 80, 164));
@@ -81,15 +91,15 @@ public class signupScreen extends javax.swing.JFrame {
                 passwordTextFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 185, 30));
+        jPanel3.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 185, 30));
 
         jSeparator1.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator1.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 130, 10));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 160, 10));
 
         jSeparator3.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator3.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 130, 40));
+        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 160, 40));
 
         signupButton.setBackground(new java.awt.Color(33, 0, 93));
         signupButton.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
@@ -101,7 +111,7 @@ public class signupScreen extends javax.swing.JFrame {
                 signupButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 130, 30));
+        jPanel3.add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 160, 30));
 
         lastNameTextField.setBackground(new java.awt.Color(103, 80, 164));
         lastNameTextField.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
@@ -113,11 +123,11 @@ public class signupScreen extends javax.swing.JFrame {
                 lastNameTextFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 185, 30));
+        jPanel3.add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 185, 30));
 
         jSeparator2.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator2.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 130, 10));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 160, 10));
 
         numberTextField.setBackground(new java.awt.Color(103, 80, 164));
         numberTextField.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
@@ -129,11 +139,11 @@ public class signupScreen extends javax.swing.JFrame {
                 numberTextFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(numberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 185, 30));
+        jPanel3.add(numberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 185, 30));
 
         jSeparator4.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator4.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 130, 10));
+        jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 160, 10));
 
         firstNameTextField.setBackground(new java.awt.Color(103, 80, 164));
         firstNameTextField.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
@@ -145,11 +155,11 @@ public class signupScreen extends javax.swing.JFrame {
                 firstNameTextFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 185, 30));
+        jPanel3.add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 185, 30));
 
         jSeparator5.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator5.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 130, 40));
+        jPanel3.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 160, 40));
 
         usernameTextField.setBackground(new java.awt.Color(103, 80, 164));
         usernameTextField.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
@@ -161,11 +171,11 @@ public class signupScreen extends javax.swing.JFrame {
                 usernameTextFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 185, 30));
+        jPanel3.add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 185, 30));
 
         jSeparator6.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator6.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 130, 10));
+        jPanel3.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 10));
 
         exit.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
         exit.setForeground(new java.awt.Color(234, 221, 255));
@@ -175,11 +185,11 @@ public class signupScreen extends javax.swing.JFrame {
                 exitMouseClicked(evt);
             }
         });
-        jPanel3.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 17, -1));
+        jPanel3.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 17, -1));
 
         jSeparator7.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator7.setForeground(new java.awt.Color(33, 0, 93));
-        jPanel3.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 130, 10));
+        jPanel3.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 160, 10));
 
         emailTextField1.setBackground(new java.awt.Color(103, 80, 164));
         emailTextField1.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
@@ -191,7 +201,13 @@ public class signupScreen extends javax.swing.JFrame {
                 emailTextField1ActionPerformed(evt);
             }
         });
-        jPanel3.add(emailTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 185, 30));
+        jPanel3.add(emailTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 185, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arima Madurai", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SIGNUP ");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -200,13 +216,16 @@ public class signupScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,7 +251,7 @@ public class signupScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         String lastName = lastNameTextField.getText();
         String firstName = firstNameTextField.getText();
-        String email = lastNameTextField.getText();
+        String email = emailTextField1.getText();
         String number = numberTextField.getText();
         String username = usernameTextField.getText();
         String password = String.valueOf(passwordTextField.getPassword());
@@ -241,6 +260,9 @@ public class signupScreen extends javax.swing.JFrame {
             userManager.addUser(firstName, lastName, email, number, username, password);
             loginScreen.user = username;
             JOptionPane.showMessageDialog(null, "SIGNUP SUCCESSFUL", "SIGNUP", JOptionPane.INFORMATION_MESSAGE);
+            mainScreen mnSc = new mainScreen();
+            mnSc.setVisible(true);
+            dispose();
         } catch (SQLException ex) {
             Logger.getLogger(signupScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -311,6 +333,8 @@ public class signupScreen extends javax.swing.JFrame {
     private javax.swing.JTextField emailTextField1;
     private javax.swing.JLabel exit;
     private javax.swing.JTextField firstNameTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

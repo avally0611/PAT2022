@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
+import backend.reservationManager;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,8 @@ import java.util.logging.Logger;
  * @author Aaminah1
  */
 public class reservationScreen extends javax.swing.JFrame {
+        public static int id = 0;
+
 
     /**
      * Creates new form reservationScreen
@@ -148,14 +151,20 @@ public class reservationScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmButtonMouseClicked
-        // TODO add your handling code here:
-        int numGuests = (int) guestSpinner.getValue();
-        LocalDateTime date = dateSpinner.getDateTimeStrict();
-        System.out.println(date);
-        
-        reservationConfirm conSc = new reservationConfirm();
-        conSc.setVisible(true);
-        dispose();
+        try {
+            // TODO add your handling code here:
+            int numGuests = (int) guestSpinner.getValue();
+            LocalDateTime date = dateSpinner.getDateTimeStrict();
+            String type = "Reservation";
+            System.out.println(date);
+            id = reservationManager.addBookingDetails(numGuests, date, type);
+            
+            reservationConfirm conSc = new reservationConfirm();
+            conSc.setVisible(true);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_confirmButtonMouseClicked
 
     /**

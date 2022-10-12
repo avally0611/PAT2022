@@ -4,9 +4,13 @@
  */
 package UI;
 
+import static UI.menuScreen.sectionsComboBox;
+import backend.bookingManager;
+import backend.menuManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +21,12 @@ public class bookingsForm extends javax.swing.JFrame {
     /**
      * Creates new form bookingsForm
      */
-    public bookingsForm() {
+    public bookingsForm() throws SQLException {
         initComponents();
+        String colNames [] = {"Date", "Number of Guests, Restaurant, Type"};
+        String [][] data = bookingManager.getBooking();
+        DefaultTableModel tableModel = new DefaultTableModel(data,colNames);
+        bookingTable.setModel(tableModel);
     }
 
     /**
@@ -34,7 +42,7 @@ public class bookingsForm extends javax.swing.JFrame {
         exit1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        bookingTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -54,7 +62,7 @@ public class bookingsForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BOOKINGS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,7 +73,7 @@ public class bookingsForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(bookingTable);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -160,16 +168,20 @@ public class bookingsForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new bookingsForm().setVisible(true);
+                try {
+                    new bookingsForm().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(bookingsForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable bookingTable;
     private javax.swing.JLabel exit1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel2;
     // End of variables declaration//GEN-END:variables
 }

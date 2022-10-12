@@ -45,7 +45,6 @@ public class mainScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
-        aboutScreen = new javax.swing.JLabel();
         profileScreen = new javax.swing.JLabel();
         logoutButton = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
@@ -62,10 +61,6 @@ public class mainScreen extends javax.swing.JFrame {
 
         kGradientPanel1.setkEndColor(new java.awt.Color(234, 221, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(103, 80, 164));
-
-        aboutScreen.setFont(new java.awt.Font("Arima Madurai", 1, 20)); // NOI18N
-        aboutScreen.setForeground(new java.awt.Color(255, 255, 255));
-        aboutScreen.setText("About");
 
         profileScreen.setFont(new java.awt.Font("Arima Madurai", 1, 20)); // NOI18N
         profileScreen.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,7 +90,7 @@ public class mainScreen extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arima Madurai", 1, 30)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("NAME");
+        jLabel7.setText("DINE IN | OUT");
 
         cityCombo.setFont(new java.awt.Font("Arima Madurai", 1, 14)); // NOI18N
         cityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose your city", "Durban", "Johannesburg", "Cape Town" }));
@@ -146,24 +141,25 @@ public class mainScreen extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(confirmButton)
-                            .addComponent(restaurantComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 209, Short.MAX_VALUE)))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(aboutScreen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(16, 16, 16)
                         .addComponent(profileScreen1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(profileScreen)
                         .addGap(20, 20, 20)
-                        .addComponent(logoutButton))
+                        .addComponent(logoutButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel7)))
-                .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(confirmButton)
+                                    .addComponent(restaurantComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 209, Short.MAX_VALUE)))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel7)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(229, 229, 229)
@@ -180,7 +176,6 @@ public class mainScreen extends javax.swing.JFrame {
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(aboutScreen)
                             .addComponent(profileScreen)
                             .addComponent(logoutButton)
                             .addComponent(profileScreen1)))
@@ -220,10 +215,14 @@ public class mainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void profileScreenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileScreenMouseClicked
-        // TODO add your handling code here:
-        profileScreen psc = new profileScreen();
-        psc.setVisible(true);
-        dispose();
+        try {
+            // TODO add your handling code here:
+            profileScreen psc = new profileScreen();
+            psc.setVisible(true);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_profileScreenMouseClicked
 
     private void cityComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboActionPerformed
@@ -307,7 +306,6 @@ public class mainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel aboutScreen;
     private javax.swing.JComboBox<String> cityCombo;
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel exit;

@@ -24,28 +24,30 @@ import javax.swing.JOptionPane;
 public class userManager {
 
     
-    public static boolean checkPassword(String userInput, String passInput) throws SQLException
+    public static boolean checkPassword(String userInput, String passInput) 
     {
-        boolean loginValid;
-        ResultSet username = sqlManager.query("SELECT password FROM users WHERE username = '" + userInput +"'");
-        username.next();
-        String resultPass = username.getString("password");
-        if(resultPass.equals(passInput))
-        {
-            loginValid = true;
-
-        }
-        else
-        {
-            loginValid = false;
+        boolean loginValid = false;
+        try {
+            ResultSet username = sqlManager.query("SELECT password FROM users WHERE username = '" + userInput +"'");
+            username.next();
+            String resultPass = username.getString("password");
+            if(resultPass.equals(passInput))
+            {
+                loginValid = true;
+                
+            }
+           
+        } catch (SQLException ex) {
+            loginValid = false;;
         }
         return loginValid;
+
     }
     
     public static void addUser(String firstName, String lastName, String email, String number, String username, String password) throws SQLException
     {
         
-        sqlManager.update("INSERT INTO users (users_id, username, password, first_name, last_name, email, phone) VALUES ('" + username +"', '" + password +"', '" + firstName +"', '" + lastName +"', '" + email +"', '" + number +"')");
+        sqlManager.update("INSERT INTO users (username, password, firstname, lastname, email, phone) VALUES ('" + username +"', '" + password +"', '" + firstName +"', '" + lastName +"', '" + email +"', '" + number +"')");
     
     }
     

@@ -19,10 +19,10 @@ public class profileManager {
     {
         int userID = 0;
 
-        ResultSet ID = sqlManager.query("SELECT userID FROM users WHERE userName = '"+user+"'");
+        ResultSet ID = sqlManager.query("SELECT usersID FROM users WHERE userName = '"+user+"'");
         while(ID.next())
         {
-           userID = ID.getInt("userID");
+           userID = ID.getInt("usersID");
         }
         return userID;
     }

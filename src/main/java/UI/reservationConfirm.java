@@ -22,8 +22,8 @@ public class reservationConfirm extends javax.swing.JFrame {
     public reservationConfirm() throws SQLException {
         initComponents();
         
-        guestOutput.setText(reservationManager.getNumGuests(reservationScreen.id));
-        dateOutput.setText(reservationManager.getDates(id));
+        guestOutput.setText(reservationManager.getNumGuests(reservationScreen.id) + "");
+        dateOutput.setText(reservationManager.getDates(reservationScreen.id) + "");
         totalOutput.setText("R" + menuManager.getTotalPrice());
         
     }
@@ -271,7 +271,11 @@ public class reservationConfirm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new reservationConfirm().setVisible(true);
+                try {
+                    new reservationConfirm().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(reservationConfirm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
