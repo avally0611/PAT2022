@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class userManager {
 
-    
+    //gets username and password entered and checks the database that the password is correct, returnss boolean
     public static boolean checkPassword(String userInput, String passInput) 
     {
         boolean loginValid = false;
@@ -44,6 +44,7 @@ public class userManager {
 
     }
     
+    //gets all of the users details to add into database
     public static void addUser(String firstName, String lastName, String email, String number, String username, String password) throws SQLException
     {
         

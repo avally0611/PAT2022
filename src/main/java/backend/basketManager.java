@@ -3,14 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package backend;
-
-import UI.menuScreen;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 /**
  *
@@ -18,6 +12,7 @@ import java.util.Scanner;
  */
 public class basketManager {
     
+    //gets the current food items chosen - saves as 2D array for jTable
     public static String[][] getCurrentFood() throws SQLException
     {
 
@@ -39,6 +34,7 @@ public class basketManager {
         return tbData;
     }
     
+    //gets number of food items chosen to set size of 2D array for getCurrentFood() method
     public static int getNumCurrent() throws SQLException
     {
         int numRows = 0;

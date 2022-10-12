@@ -16,11 +16,14 @@ import java.sql.SQLException;
  */
 public class sqlManager {
     
+    //Note: most of this code was from Abban
+    
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/pat_grade10";
     private static final String user = "root";
     private static final String pass = "1786";
 
+    //Add, remove or edit something in a table in the database
     public static void update(String update) throws SQLException 
     {
             Connection conn = DriverManager.getConnection(url, user, pass);
@@ -30,6 +33,7 @@ public class sqlManager {
             statement.close();
 	}
 
+    //Get information from table in database and save into a separate "table" called a ResultSet
     public static ResultSet query(String query) throws SQLException {
             Connection conn = DriverManager.getConnection(url, user, pass);
 

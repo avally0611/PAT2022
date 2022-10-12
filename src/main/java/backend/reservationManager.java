@@ -16,6 +16,8 @@ import java.time.LocalTime;
  * @author Aaminah1
  */
 public class reservationManager {
+    
+    //when the reserve button is clicked, the data is entered into database and then the booking ID is returned as int so that the confirmation screen can get the data from the database based on the ID
     public static int addBookingDetails(int numGuests, LocalDateTime date, String type) throws SQLException
     {
         int userID = profileManager.getUserID();
@@ -33,6 +35,7 @@ public class reservationManager {
         return bookingID;
     }
     
+    //gets number of guests from database
     public static int getNumGuests(int id) throws SQLException
     {
         int numGuests = 0;
@@ -45,6 +48,7 @@ public class reservationManager {
         return numGuests;
     }
     
+    //gets date of booking and returns as String
     public static String getDates(int id) throws SQLException
     {
         String date = "";

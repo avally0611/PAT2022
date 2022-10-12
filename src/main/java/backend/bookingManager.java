@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
  * @author Aaminah1
  */
 public class bookingManager {
+    
+    //gets the current user's bookings based off their ID - 2D array for populating jTable
      public static String[][] getBooking() throws SQLException
     {
         int userID = profileManager.getUserID();
@@ -51,29 +53,31 @@ public class bookingManager {
         return tbData;
     }
      
-     public static int getNumBookings(int userID) throws SQLException
-     {
-         int count = 0;
-         ResultSet rs = sqlManager.query("SELECT bookingID FROM bookings WHERE (userID = '"+userID+"')");
-         while(rs.next())
-         {
-             count++;
+    //get number of booking to set the size of 2D array for getBooking() method 
+    public static int getNumBookings(int userID) throws SQLException
+    {
+        int count = 0;
+        ResultSet rs = sqlManager.query("SELECT bookingID FROM bookings WHERE (userID = '"+userID+"')");
+        while(rs.next())
+        {
+            count++;
 
-         }
-         
-         return count;
-     }
-     
-     public static String getRestaurant(int resID) throws SQLException
-     {
-         String resName = "";
-         ResultSet rs = sqlManager.query("SELECT restaurantName FROM restaurants WHERE (restaurantID = '"+resID+"')");
-         while (rs.next())
-         {
-             resName = rs.getString("restaurantName");
-         }
-         return resName;
-     }
-     
+        }
+
+        return count;
+    }
+    
+    //the booking table returns the restaurant ID so this method gets the name of the restaurant so we can display it on the jTable
+    public static String getRestaurant(int resID) throws SQLException
+    {
+        String resName = "";
+        ResultSet rs = sqlManager.query("SELECT restaurantName FROM restaurants WHERE (restaurantID = '"+resID+"')");
+        while (rs.next())
+        {
+            resName = rs.getString("restaurantName");
+        }
+        return resName;
+    }
+
     
 }

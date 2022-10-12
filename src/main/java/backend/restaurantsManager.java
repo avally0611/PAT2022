@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class restaurantsManager {
     
+    //this method gets the list of cities from database and returns it as ArrayList to populate combo box
     public static ArrayList<String> getCities() throws SQLException
     {
         ArrayList<String> citiesList = new ArrayList<String>();
@@ -34,6 +35,7 @@ public class restaurantsManager {
         return citiesList;
     }
     
+    //gets list of restaurants based on city chosen and save it as ArrayList to populate combo box
     public static ArrayList<String> getRestaurants(String city) throws SQLException
     {
         ArrayList<String> restaurantsList = new ArrayList<String>();
@@ -48,6 +50,7 @@ public class restaurantsManager {
         return restaurantsList;
     }
     
+    //gets the description of restaurant from database when a retaurant is chosen
     public static String getDesc (String restaurant) throws SQLException
     {
         String restDesc = "";

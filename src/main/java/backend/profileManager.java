@@ -15,6 +15,7 @@ import java.sql.SQLException;
 public class profileManager {
     static String user = loginScreen.user;
     
+    //in order for the user to see their details, we have to get their ID so we can get THEIR info from the database
     public static int getUserID() throws SQLException
     {
         int userID = 0;
@@ -27,6 +28,7 @@ public class profileManager {
         return userID;
     }
     
+    //gets firstname from database
     public static String getFName() throws SQLException
     {
         String fName = "";
@@ -38,6 +40,7 @@ public class profileManager {
         return fName;
     }
     
+    //gets lastname from database
     public static String getLName() throws SQLException
     {
         String LName = "";
@@ -49,6 +52,7 @@ public class profileManager {
         return LName;
     }
     
+    //gets username from database
     public static String getUsername() throws SQLException
     {
         String username = "";
@@ -60,6 +64,7 @@ public class profileManager {
         return username;
     }
     
+    //gets password from database
     public static String getPassword() throws SQLException
     {
         String pass = "";
@@ -71,6 +76,7 @@ public class profileManager {
         return pass;
     }
     
+    //gets email from database
     public static String getEmail() throws SQLException
     {
         String email = "";
@@ -82,6 +88,7 @@ public class profileManager {
         return email;
     }
     
+    //gets phone number from database
     public static String getPhone() throws SQLException
     {
         String phone = "";
@@ -93,6 +100,7 @@ public class profileManager {
         return phone;
     }
     
+    //if the user wants to edit their details, this method is used to change the details
     public static void updateDetails(String username, String password, String firstName, String lastName, String email, String number ) throws SQLException
     {
         int userID = getUserID();

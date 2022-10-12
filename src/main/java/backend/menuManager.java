@@ -3,11 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package backend;
-
-import UI.mainScreen;
-import UI.menuScreen;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +13,7 @@ import java.util.ArrayList;
 public class menuManager {
     
 
+    //get restaurant ID from database so we can use it later (getting food items)
     public static int getResID(String selectedRes) throws SQLException
     {
         int restaurantID = 0;
@@ -30,6 +26,7 @@ public class menuManager {
         return restaurantID;
     }
     
+    //get sections of restaurant and save into ArrayList to populate combo box
     public static ArrayList<String> getSections(String selectedRes) throws SQLException
     {
         ArrayList<String> sectionList = new ArrayList<String>();
@@ -48,6 +45,7 @@ public class menuManager {
         return sectionList;
     }
     
+    //get section ID based on secion for future use (getting food items)
     public static int getSectionID(String section) throws SQLException
     {
         int secID = 0;
@@ -59,7 +57,7 @@ public class menuManager {
         return secID;
     }
     
-    
+    //get food items based on restaurant and section chosen, save it in 2D array so that we can populate jTable with all the food items
     public static String[][] getFood(String selectedRes, String section) throws SQLException
     {
         int rows = getNumFood(selectedRes, section);
@@ -68,7 +66,7 @@ public class menuManager {
         int resID = getResID(selectedRes);
         int secID = getSectionID(section);
 
-        ResultSet rs = sqlManager.query("SELECT name, price FROM menuItem, menu WHERE (menuItem.itemID = menu.itemID) AND (menu.sectionID = '"+secID+"') AND (menu.restaurantID = '"+resID+"') ");
+        ResultSet rs = sqlManager.query("SELECT name, price FROM menuItem, menu WHERE (menu.restaurantID = '"+resID+"') AND (menu.sectionID = '"+secID+"') AND  (menuItem.menuItemID = menu.itemID) ");
         while (rs.next())
         {
             for (int i = 0; i < rows; i++) 
@@ -86,6 +84,7 @@ public class menuManager {
         return tbData;
     }
      
+    //get the number of food items so we can set a size to our 2D array for getFood() as we have to use a 2D array for jTables
     private static int getNumFood(String selectedRes, String section) throws SQLException
              
     {
@@ -94,7 +93,7 @@ public class menuManager {
        
         int count = 0;
 
-        ResultSet rs = sqlManager.query("SELECT name FROM menuItem, menu WHERE (menuItem.itemID = menu.itemID) AND (menu.sectionID = '"+secID+"') AND (menu.restaurantID = '"+resID+"') ");
+        ResultSet rs = sqlManager.query("SELECT name FROM menuItem, menu WHERE (menuItem.menuItemID = menu.itemID) AND (menu.sectionID = '"+secID+"') AND (menu.restaurantID = '"+resID+"') ");
         while (rs.next())
         {
             count++;
@@ -106,7 +105,7 @@ public class menuManager {
     }  
     
     
-    
+    //when user presses add button, it uses this method so we can keep track of all the food items chosen 
     public static void currentOrder(String selectedItem, String prices) throws SQLException
     {
         
@@ -115,6 +114,7 @@ public class menuManager {
     
     }
     
+    //gets the food items chosen
     public static ArrayList<String> getCurrentOrder() throws SQLException
     {
     
@@ -129,6 +129,7 @@ public class menuManager {
         return listFoods;
     }
     
+    //gets the total price of the food items chosen and returns as double
     public static double getTotalPrice() throws SQLException
     {
         ResultSet pricesList = sqlManager.query("SELECT price FROM currentBooking");
@@ -141,6 +142,7 @@ public class menuManager {
         return totalPrice;
     }
     
+    //user presses delete button and we remove from currentOrder table, we also have to reset the itemID auto-increment as it gets messed up when we delete an item 
     public static void removeItem(String item, int count) throws SQLException
     {
         sqlManager.update("DELETE FROM currentBooking WHERE currentBookingID = '"+count+"'");
