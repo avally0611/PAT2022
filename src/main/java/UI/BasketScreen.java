@@ -4,9 +4,11 @@
  */
 package UI;
 
-import static UI.menuScreen.sectionsComboBox;
-import backend.basketManager;
-import backend.menuManager;
+import static UI.MenuScreen.sectionsComboBox;
+import static UI.ReservationScreen.id;
+import backend.BasketManager;
+import backend.MenuManager;
+import backend.ReservationManager;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,16 +20,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aaminah1
  */
-public class basketScreen extends javax.swing.JFrame {
+public class BasketScreen extends javax.swing.JFrame {
+    
+    public static String type = "";
 
     /**
      * Creates new form basketScreen
      */
-    public basketScreen() throws SQLException {
+    public BasketScreen() throws SQLException {
         initComponents();
         
+        deliveryRadio.setSelected(true);
+        
         String colNames [] = {"Item", "Price"};
-        String [][] data = basketManager.getCurrentFood();
+        String [][] data = BasketManager.getCurrentFood();
         DefaultTableModel tableModel = new DefaultTableModel(data,colNames);
         confirmedTable.setModel(tableModel);
         
@@ -58,7 +64,7 @@ public class basketScreen extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        confirmButton = new javax.swing.JButton();
         dateSpinner = new com.github.lgooddatepicker.components.DateTimePicker();
         jScrollPane2 = new javax.swing.JScrollPane();
         confirmedTable = new javax.swing.JTable();
@@ -154,14 +160,14 @@ public class basketScreen extends javax.swing.JFrame {
         totalLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 0, 93), 2, true));
         totalLabel.setFont(new java.awt.Font("Arima Madurai", 1, 15)); // NOI18N
 
-        jButton1.setText("CONFIRM");
-        jButton1.setBackground(new java.awt.Color(33, 0, 93));
-        jButton1.setBorder(null);
-        jButton1.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirmButton.setText("CONFIRM");
+        confirmButton.setBackground(new java.awt.Color(33, 0, 93));
+        confirmButton.setBorder(null);
+        confirmButton.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
+        confirmButton.setForeground(new java.awt.Color(255, 255, 255));
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                confirmButtonActionPerformed(evt);
             }
         });
 
@@ -193,10 +199,10 @@ public class basketScreen extends javax.swing.JFrame {
             confirmedTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jLabel4.setFont(new java.awt.Font("Arima Madurai", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Delivery/Collection Date");
+        jLabel4.setFont(new java.awt.Font("Arima Madurai", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jSeparator3.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator3.setForeground(new java.awt.Color(33, 0, 93));
@@ -240,7 +246,7 @@ public class basketScreen extends javax.swing.JFrame {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(145, 145, 145)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(121, 121, 121)
                                 .addComponent(jLabel4)))
@@ -290,7 +296,7 @@ public class basketScreen extends javax.swing.JFrame {
                 .addGap(0, 5, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(confirmButton)
                 .addGap(12, 12, 12))
         );
 
@@ -315,46 +321,59 @@ public class basketScreen extends javax.swing.JFrame {
         jSeparator1.setVisible(false);
         jTextField2.setVisible(false);
         jSeparator2.setVisible(false);
+        type = "Collection";
         
+//        int x = jLabel4.getX();
+//        int y = jLabel4.getY();
+//        jLabel4.setLocation(x, y - 50);
         
+        //changing size of jFrame
+        int width = this.getWidth();
+        int height = this.getHeight();
+        this.setSize(width, height - 150);
         
         try {
-            totalLabel.setText("R" + menuManager.getTotalPrice());
+            totalLabel.setText("R" + MenuManager.getTotalPrice());
         } catch (SQLException ex) {
-            Logger.getLogger(basketScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BasketScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_collectionRadioMouseClicked
 
     private void deliveryRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deliveryRadioMouseClicked
         // TODO add your handling code here:
+        int width = this.getWidth();
+        int height = this.getHeight();
+        this.setSize(width, height + 150);
         jLabel2.setVisible(true);
         jTextField1.setVisible(true);
         jSeparator1.setVisible(true);
         jTextField2.setVisible(true);
         jSeparator2.setVisible(true);
-        
+        type = "Delivery";
+
        
         
         try {
-            totalLabel.setText("R" + menuManager.getTotalPrice());
+            totalLabel.setText("R" + MenuManager.getTotalPrice());
         } catch (SQLException ex) {
-            Logger.getLogger(basketScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BasketScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_deliveryRadioMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         try {
             // TODO add your handling code here:
+            id = BasketManager.addBookingDetails(type);
             JOptionPane.showMessageDialog(null, "Your booking has been confirmed", "Information", JOptionPane.INFORMATION_MESSAGE);
-            mainScreen mSc = new mainScreen();
+            MainScreen mSc = new MainScreen();
             mSc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(basketScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BasketScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_confirmButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,14 +392,15 @@ public class basketScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(basketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BasketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(basketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BasketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(basketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BasketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(basketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BasketScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
 
@@ -388,9 +408,9 @@ public class basketScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new basketScreen().setVisible(true);
+                    new BasketScreen().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(basketScreen.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BasketScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -399,11 +419,11 @@ public class basketScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton collectionRadio;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JTable confirmedTable;
     private com.github.lgooddatepicker.components.DateTimePicker dateSpinner;
     private javax.swing.JRadioButton deliveryRadio;
     private javax.swing.JLabel exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
-import backend.reservationManager;
+import backend.ReservationManager;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,14 +16,14 @@ import java.util.logging.Logger;
  *
  * @author Aaminah1
  */
-public class reservationScreen extends javax.swing.JFrame {
+public class ReservationScreen extends javax.swing.JFrame {
         public static int id = 0;
 
 
     /**
      * Creates new form reservationScreen
      */
-    public reservationScreen() {
+    public ReservationScreen() {
         initComponents();
     }
 
@@ -157,13 +157,13 @@ public class reservationScreen extends javax.swing.JFrame {
             LocalDateTime date = dateSpinner.getDateTimeStrict();
             String type = "Reservation";
             System.out.println(date);
-            id = reservationManager.addBookingDetails(numGuests, date, type);
+            id = ReservationManager.addReservationDetails(numGuests, date, type);
             
-            reservationConfirm conSc = new reservationConfirm();
+            ReservationConfirm conSc = new ReservationConfirm();
             conSc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(reservationScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_confirmButtonMouseClicked
 
@@ -184,20 +184,21 @@ public class reservationScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(reservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(reservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(reservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(reservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new reservationScreen().setVisible(true);
+                new ReservationScreen().setVisible(true);
             }
         });
     }

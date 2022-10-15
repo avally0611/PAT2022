@@ -4,8 +4,8 @@
  */
 package UI;
 
-import backend.sqlManager;
-import backend.userManager;
+import backend.SqlManager;
+import backend.UserManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author aaminahv
  */
-public class loginScreen extends javax.swing.JFrame {
+public class LoginScreen extends javax.swing.JFrame {
     public static String user = "";
     /**
      * Creates new form loginScreen
      */
-    public loginScreen() {
+    public LoginScreen() {
         initComponents();
     }
 
@@ -208,7 +208,7 @@ public class loginScreen extends javax.swing.JFrame {
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         // TODO add your handling code here:
-        signupScreen sc = new signupScreen();
+        SignupScreen sc = new SignupScreen();
         sc.setVisible(true);
         dispose();
 
@@ -221,11 +221,11 @@ public class loginScreen extends javax.swing.JFrame {
         
         boolean loginResult;
         try {
-            loginResult = userManager.checkPassword(userInput, pass);
+            loginResult = UserManager.checkPassword(userInput, pass);
             if (loginResult)
             {
             JOptionPane.showMessageDialog(null, "Your details are correct", "Information", JOptionPane.INFORMATION_MESSAGE);
-            mainScreen msc = new mainScreen();
+            MainScreen msc = new MainScreen();
             msc.setVisible(true);
             dispose();
             user = userInput;
@@ -235,7 +235,7 @@ public class loginScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Your details are Incorrect", "Warning", JOptionPane.WARNING_MESSAGE);            
             }
         } catch (SQLException ex) {
-            Logger.getLogger(loginScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        
@@ -270,20 +270,21 @@ public class loginScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(loginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(loginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(loginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(loginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new loginScreen().setVisible(true);
+                new LoginScreen().setVisible(true);
             }
         });
     }

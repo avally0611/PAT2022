@@ -4,9 +4,7 @@
  */
 package UI;
 
-import static UI.menuScreen.sectionsComboBox;
-import backend.bookingManager;
-import backend.menuManager;
+import backend.BookingManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,17 +14,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aaminah1
  */
-public class bookingsForm extends javax.swing.JFrame {
+public class UserBookingsScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form bookingsForm
+     * Creates new form UserBookingsScreen
      */
-    public bookingsForm() throws SQLException {
+    public UserBookingsScreen() throws SQLException {
         initComponents();
-        String colNames [] = {"Date", "Number of Guests, Restaurant, Type"};
-        String [][] data = bookingManager.getBooking();
+        String colNames [] = {"Date", "Guests", "Restaurant", "Type"};
+        String [][] data = BookingManager.getBooking();
         DefaultTableModel tableModel = new DefaultTableModel(data,colNames);
         bookingTable.setModel(tableModel);
+        
+        bookingTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+        bookingTable.getColumnModel().getColumn(0).setMaxWidth(200);
+        bookingTable.getColumnModel().getColumn(2).setPreferredWidth(180);
+        bookingTable.getColumnModel().getColumn(2).setMaxWidth(180);
+        bookingTable.getColumnModel().getColumn(3).setPreferredWidth(180);
+        bookingTable.getColumnModel().getColumn(3).setMaxWidth(180);
     }
 
     /**
@@ -50,17 +55,17 @@ public class bookingsForm extends javax.swing.JFrame {
         kGradientPanel2.setkEndColor(new java.awt.Color(234, 221, 255));
         kGradientPanel2.setkStartColor(new java.awt.Color(103, 80, 164));
 
-        exit1.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
         exit1.setText("x");
+        exit1.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
         exit1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exit1MouseClicked(evt);
             }
         });
 
+        jLabel1.setText("BOOKINGS");
         jLabel1.setFont(new java.awt.Font("Arima Madurai", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BOOKINGS");
 
         bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,15 +84,16 @@ public class bookingsForm extends javax.swing.JFrame {
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exit1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(169, 169, 169)
+                        .addComponent(exit1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,28 +105,26 @@ public class bookingsForm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 438, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
         );
 
         pack();
@@ -130,12 +134,13 @@ public class bookingsForm extends javax.swing.JFrame {
     private void exit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit1MouseClicked
         try {
             // TODO add your handling code here:
-            mainScreen mnSc = new mainScreen();
+            MainScreen mnSc = new MainScreen();
             mnSc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(bookingsForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserBookingsScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }//GEN-LAST:event_exit1MouseClicked
 
     /**
@@ -155,13 +160,13 @@ public class bookingsForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(bookingsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserBookingsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(bookingsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserBookingsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(bookingsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserBookingsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(bookingsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserBookingsScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -169,9 +174,9 @@ public class bookingsForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new bookingsForm().setVisible(true);
+                    new UserBookingsScreen().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(bookingsForm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UserBookingsScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

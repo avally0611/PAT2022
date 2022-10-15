@@ -4,8 +4,8 @@
  */
 package backend;
 
-import UI.loginScreen;
-import UI.mainScreen;
+import UI.LoginScreen;
+import UI.MainScreen;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -15,20 +15,20 @@ import java.time.LocalTime;
  *
  * @author Aaminah1
  */
-public class reservationManager {
+public class ReservationManager {
     
     //when the reserve button is clicked, the data is entered into database and then the booking ID is returned as int so that the confirmation screen can get the data from the database based on the ID
-    public static int addBookingDetails(int numGuests, LocalDateTime date, String type) throws SQLException
+    public static int addReservationDetails(int numGuests, LocalDateTime date, String type) throws SQLException
     {
-        int userID = profileManager.getUserID();
-        int resID = menuManager.getResID((String) mainScreen.restaurantComboBox.getSelectedItem());
+        int userID = ProfileManager.getUserID();
+        int resID = MenuManager.getResID((String) MainScreen.restaurantComboBox.getSelectedItem());
         
        int bookingID = 0;
-        sqlManager.update("INSERT INTO bookings (date, numGuests, restaurantID, userID, type) VALUES ('" + date +"', '" + numGuests +"', '" + resID +"', '" + userID +"', '" + type +"')");
-        ResultSet booking = sqlManager.query("SELECT bookingID FROM bookings");
+        SqlManager.update("INSERT INTO bookings (date, numGuests, restaurantID, userID, type) VALUES ('" + date +"', '" + numGuests +"', '" + resID +"', '" + userID +"', '" + type +"')");
+        ResultSet booking = SqlManager.query("SELECT bookingID FROM bookings");
         while (booking.next())
         {
-            bookingID = booking.getInt(bookingID);
+            bookingID = booking.getInt("bookingID");
         }
         
         //return id when adding
@@ -39,7 +39,7 @@ public class reservationManager {
     public static int getNumGuests(int id) throws SQLException
     {
         int numGuests = 0;
-        ResultSet rs = sqlManager.query("SELECT numGuests FROM bookings WHERE bookingID = '"+id+"'");
+        ResultSet rs = SqlManager.query("SELECT numGuests FROM bookings WHERE bookingID = '"+id+"'");
         while(rs.next())
         {
             numGuests = rs.getInt("numGuests");
@@ -52,7 +52,7 @@ public class reservationManager {
     public static String getDates(int id) throws SQLException
     {
         String date = "";
-        ResultSet rs = sqlManager.query("SELECT date FROM bookings WHERE bookingID = '"+id+"'");
+        ResultSet rs = SqlManager.query("SELECT date FROM bookings WHERE bookingID = '"+id+"'");
         while(rs.next())
         {
             date = rs.getString("date");

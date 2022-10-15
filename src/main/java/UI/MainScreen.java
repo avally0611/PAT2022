@@ -4,7 +4,7 @@
  */
 package UI;
 
-import backend.restaurantsManager;
+import backend.RestaurantManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,16 +15,16 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author aaminahv
  */
-public class mainScreen extends javax.swing.JFrame {
+public class MainScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form mainScreen
      */
-    public mainScreen() throws SQLException {
+    public MainScreen() throws SQLException {
         
         initComponents();
         
-        DefaultComboBoxModel comboModel = new DefaultComboBoxModel ((restaurantsManager.getCities()).toArray());
+        DefaultComboBoxModel comboModel = new DefaultComboBoxModel ((RestaurantManager.getCities()).toArray());
 	cityCombo.setModel(comboModel);
         
       
@@ -50,10 +50,11 @@ public class mainScreen extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cityCombo = new javax.swing.JComboBox<>();
-        outputTextArea = new javax.swing.JLabel();
         restaurantComboBox = new javax.swing.JComboBox<>();
         confirmButton = new javax.swing.JButton();
-        profileScreen1 = new javax.swing.JLabel();
+        bookingsButton = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputTextArea = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -101,11 +102,6 @@ public class mainScreen extends javax.swing.JFrame {
             }
         });
 
-        outputTextArea.setFont(new java.awt.Font("Arima Madurai", 0, 15)); // NOI18N
-        outputTextArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        outputTextArea.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        outputTextArea.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 0, 93), 3, true));
-
         restaurantComboBox.setFont(new java.awt.Font("Arima Madurai", 1, 14)); // NOI18N
         restaurantComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose your restaurant", "" }));
         restaurantComboBox.setBorder(null);
@@ -125,49 +121,47 @@ public class mainScreen extends javax.swing.JFrame {
             }
         });
 
-        profileScreen1.setFont(new java.awt.Font("Arima Madurai", 1, 20)); // NOI18N
-        profileScreen1.setForeground(new java.awt.Color(255, 255, 255));
-        profileScreen1.setText("Bookings");
-        profileScreen1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bookingsButton.setFont(new java.awt.Font("Arima Madurai", 1, 20)); // NOI18N
+        bookingsButton.setForeground(new java.awt.Color(255, 255, 255));
+        bookingsButton.setText("Bookings");
+        bookingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profileScreen1MouseClicked(evt);
+                bookingsButtonMouseClicked(evt);
             }
         });
+
+        outputTextArea.setEditable(false);
+        outputTextArea.setFont(new java.awt.Font("Arima Madurai", 0, 13)); // NOI18N
+        jScrollPane1.setViewportView(outputTextArea);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(bookingsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(profileScreen)
+                .addGap(20, 20, 20)
+                .addComponent(logoutButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(profileScreen1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(profileScreen)
-                        .addGap(20, 20, 20)
-                        .addComponent(logoutButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel7))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(confirmButton)
-                                    .addComponent(restaurantComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 209, Short.MAX_VALUE)))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel7)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(outputTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77))))
+                        .addGap(25, 25, 25)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cityCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(confirmButton)
+                            .addComponent(restaurantComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 209, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +172,7 @@ public class mainScreen extends javax.swing.JFrame {
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(profileScreen)
                             .addComponent(logoutButton)
-                            .addComponent(profileScreen1)))
+                            .addComponent(bookingsButton)))
                     .addComponent(exit))
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
@@ -191,12 +185,12 @@ public class mainScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(confirmButton))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(outputTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 400));
+        getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 380));
 
         pack();
         setLocationRelativeTo(null);
@@ -209,7 +203,7 @@ public class mainScreen extends javax.swing.JFrame {
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
-        loginScreen lsc = new loginScreen();
+        LoginScreen lsc = new LoginScreen();
         lsc.setVisible(true);
         dispose();
     }//GEN-LAST:event_logoutButtonMouseClicked
@@ -217,11 +211,11 @@ public class mainScreen extends javax.swing.JFrame {
     private void profileScreenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileScreenMouseClicked
         try {
             // TODO add your handling code here:
-            profileScreen psc = new profileScreen();
+            ProfileScreen psc = new ProfileScreen();
             psc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_profileScreenMouseClicked
 
@@ -229,10 +223,10 @@ public class mainScreen extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             String selectedCity = (String) cityCombo.getSelectedItem();
-            DefaultComboBoxModel comboModel1 = new DefaultComboBoxModel ((restaurantsManager.getRestaurants(selectedCity)).toArray());  
+            DefaultComboBoxModel comboModel1 = new DefaultComboBoxModel ((RestaurantManager.getRestaurants(selectedCity)).toArray());  
             restaurantComboBox.setModel(comboModel1);
         } catch (SQLException ex) {
-            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
        
        
@@ -243,7 +237,7 @@ public class mainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
                try {
             // TODO add your handling code here:
-            menuScreen mnS = new menuScreen();
+            MenuScreen mnS = new MenuScreen();
             mnS.setVisible(true);
             dispose();
         } catch (SQLException ex) {
@@ -252,17 +246,24 @@ public class mainScreen extends javax.swing.JFrame {
      
     }//GEN-LAST:event_confirmButtonMouseClicked
 
-    private void profileScreen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileScreen1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_profileScreen1MouseClicked
+    private void bookingsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingsButtonMouseClicked
+        try {
+            // TODO add your handling code here:
+            UserBookingsScreen ubs = new UserBookingsScreen();
+            ubs.setVisible(true);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bookingsButtonMouseClicked
 
     private void restaurantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantComboBoxActionPerformed
         try {
             // TODO add your handling code here:
             String restaurant = (String) restaurantComboBox.getSelectedItem();
-            outputTextArea.setText(restaurantsManager.getDesc(restaurant));
+            outputTextArea.setText(RestaurantManager.getDesc(restaurant));
         } catch (SQLException ex) {
-            Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_restaurantComboBoxActionPerformed
 
@@ -283,38 +284,40 @@ public class mainScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new mainScreen().setVisible(true);
+                    new MainScreen().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(mainScreen.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bookingsButton;
     private javax.swing.JComboBox<String> cityCombo;
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel logoutButton;
-    private javax.swing.JLabel outputTextArea;
+    private javax.swing.JTextPane outputTextArea;
     private javax.swing.JLabel profileScreen;
-    private javax.swing.JLabel profileScreen1;
     public static javax.swing.JComboBox<String> restaurantComboBox;
     // End of variables declaration//GEN-END:variables
 

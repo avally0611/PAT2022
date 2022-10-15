@@ -4,28 +4,30 @@
  */
 package UI;
 
-import backend.profileManager;
+import backend.ProfileManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Aaminah1
  */
-public class profileScreen extends javax.swing.JFrame {
+public class ProfileScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form profileScreen
      */
-    public profileScreen() throws SQLException {
+    public ProfileScreen() throws SQLException {
         initComponents();
-        firstNameTextField.setText(profileManager.getFName());
-        lastNameTextField.setText(profileManager.getLName());
-        usernameTextField.setText(profileManager.getUsername());
-        passwordTextField.setText(profileManager.getPassword());
-        emailTextField1.setText(profileManager.getEmail());
-        numberTextField.setText(profileManager.getPhone());
+        firstNameTextField.setText(ProfileManager.getFName());
+        lastNameTextField.setText(ProfileManager.getLName());
+        usernameTextField.setText(ProfileManager.getUsername());
+        passwordTextField.setText(ProfileManager.getPassword());
+        emailTextField1.setText(ProfileManager.getEmail());
+        numberTextField.setText(ProfileManager.getPhone());
+        welcomeLabel.setText("Welcome " + ProfileManager.getFName());
     }
 
     /**
@@ -47,12 +49,14 @@ public class profileScreen extends javax.swing.JFrame {
         lastNameTextField = new javax.swing.JTextField();
         updateButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
         jSeparator11 = new javax.swing.JSeparator();
         jSeparator12 = new javax.swing.JSeparator();
         jSeparator13 = new javax.swing.JSeparator();
+        exit = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -159,9 +163,10 @@ public class profileScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("jLabel1");
+        welcomeLabel.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
+        welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeLabel.setText("jLabel1");
 
         jSeparator8.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator8.setForeground(new java.awt.Color(33, 0, 93));
@@ -183,49 +188,77 @@ public class profileScreen extends javax.swing.JFrame {
         jSeparator13.setForeground(new java.awt.Color(33, 0, 93));
         jSeparator13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 0, 93), 1, true));
 
+        exit.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
+        exit.setText("x");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/restaurant (1).png"))); // NOI18N
+
         javax.swing.GroupLayout kGradientPanel5Layout = new javax.swing.GroupLayout(kGradientPanel5);
         kGradientPanel5.setLayout(kGradientPanel5Layout);
         kGradientPanel5Layout.setHorizontalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
+                        .addComponent(exit)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
                         .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(firstNameTextField)
-                                .addComponent(lastNameTextField)
-                                .addComponent(emailTextField1)
-                                .addComponent(numberTextField)
-                                .addComponent(usernameTextField)
-                                .addComponent(passwordTextField)
-                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(firstNameTextField)
+                                        .addComponent(lastNameTextField)
+                                        .addComponent(emailTextField1)
+                                        .addComponent(numberTextField)
+                                        .addComponent(usernameTextField)
+                                        .addComponent(passwordTextField)
+                                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                                        .addGap(62, 62, 62)
+                                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(73, 73, 73)))
+                        .addGap(30, 30, 30))))
+            .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(welcomeLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel5Layout.setVerticalGroup(
             kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(55, 55, 55)
+                .addGroup(kGradientPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(exit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel5Layout.createSequentialGroup()
+                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(welcomeLabel)
+                        .addGap(12, 12, 12)))
                 .addComponent(editButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,7 +300,7 @@ public class profileScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(kGradientPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,12 +313,12 @@ public class profileScreen extends javax.swing.JFrame {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-        firstNameTextField.isEditable();
-        lastNameTextField.isEditable();
-        usernameTextField.isEditable();
-        passwordTextField.isEditable();
-        emailTextField1.isEditable();
-        numberTextField.isEditable();
+        firstNameTextField.setEditable(true);
+        lastNameTextField.setEditable(true);
+        usernameTextField.setEditable(true);
+        passwordTextField.setEditable(true);
+        emailTextField1.setEditable(true);
+        numberTextField.setEditable(true);
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
@@ -315,19 +348,37 @@ public class profileScreen extends javax.swing.JFrame {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         try {
             // TODO add your handling code here:
-            profileManager.updateDetails(usernameTextField.getText(), passwordTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), emailTextField1.getText(), numberTextField.getText());
-            firstNameTextField.setText(profileManager.getFName());
-            lastNameTextField.setText(profileManager.getLName());
-            usernameTextField.setText(profileManager.getUsername());
-            passwordTextField.setText(profileManager.getPassword());
-            emailTextField1.setText(profileManager.getEmail());
-            numberTextField.setText(profileManager.getPhone());
+            firstNameTextField.setEditable(false);
+            lastNameTextField.setEditable(false);
+            usernameTextField.setEditable(false);
+            passwordTextField.setEditable(false);
+            emailTextField1.setEditable(false);
+            numberTextField.setEditable(false);
+            ProfileManager.updateDetails(usernameTextField.getText(), passwordTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), emailTextField1.getText(), numberTextField.getText());
+            firstNameTextField.setText(ProfileManager.getFName());
+            lastNameTextField.setText(ProfileManager.getLName());
+            usernameTextField.setText(ProfileManager.getUsername());
+            passwordTextField.setText(ProfileManager.getPassword());
+            emailTextField1.setText(ProfileManager.getEmail());
+            numberTextField.setText(ProfileManager.getPhone());
+            JOptionPane.showMessageDialog(null, "YOUR DETAILS HAVE BEEN UPDATED", "Information", JOptionPane.INFORMATION_MESSAGE);
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(profileScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfileScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        try {
+            // TODO add your handling code here:
+            MainScreen mnSc = new MainScreen();
+            mnSc.setVisible(true);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfileScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_exitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -346,23 +397,24 @@ public class profileScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(profileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProfileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(profileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProfileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(profileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProfileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(profileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProfileScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new profileScreen().setVisible(true);
+                    new ProfileScreen().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(profileScreen.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProfileScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -371,8 +423,9 @@ public class profileScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editButton;
     private javax.swing.JTextField emailTextField1;
+    private javax.swing.JLabel exit;
     private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -385,5 +438,6 @@ public class profileScreen extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JButton updateButton;
     private javax.swing.JTextField usernameTextField;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

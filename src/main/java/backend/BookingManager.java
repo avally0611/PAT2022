@@ -4,8 +4,8 @@
  */
 package backend;
 
-import static backend.menuManager.getResID;
-import static backend.menuManager.getSectionID;
+import static backend.MenuManager.getResID;
+import static backend.MenuManager.getSectionID;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,18 +15,18 @@ import java.time.LocalDateTime;
  *
  * @author Aaminah1
  */
-public class bookingManager {
+public class BookingManager {
     
     //gets the current user's bookings based off their ID - 2D array for populating jTable
      public static String[][] getBooking() throws SQLException
     {
-        int userID = profileManager.getUserID();
+        int userID = ProfileManager.getUserID();
         int rows = getNumBookings(userID);
-        String tbData [][] = new String[rows][3];
+        String tbData [][] = new String[rows][4];
         
 
 
-        ResultSet rs = sqlManager.query("SELECT date, numGuests, restaurantID, type FROM bookings WHERE (userID = '"+userID+"') ");
+        ResultSet rs = SqlManager.query("SELECT date, numGuests, restaurantID, type FROM bookings WHERE (userID = '"+userID+"') ");
         while (rs.next())
         {
             for (int i = 0; i < rows; i++) 
@@ -41,7 +41,7 @@ public class bookingManager {
                 tbData [i][0] = date;
                 tbData[i][1] = numGuests;
                 tbData[i][2] = restaurantName;
-                tbData[i][3] = numGuests;
+                tbData[i][3] = type;
 
 
                 rs.next();
@@ -57,7 +57,7 @@ public class bookingManager {
     public static int getNumBookings(int userID) throws SQLException
     {
         int count = 0;
-        ResultSet rs = sqlManager.query("SELECT bookingID FROM bookings WHERE (userID = '"+userID+"')");
+        ResultSet rs = SqlManager.query("SELECT bookingID FROM bookings WHERE (userID = '"+userID+"')");
         while(rs.next())
         {
             count++;
@@ -71,7 +71,7 @@ public class bookingManager {
     public static String getRestaurant(int resID) throws SQLException
     {
         String resName = "";
-        ResultSet rs = sqlManager.query("SELECT restaurantName FROM restaurants WHERE (restaurantID = '"+resID+"')");
+        ResultSet rs = SqlManager.query("SELECT restaurantName FROM restaurants WHERE (restaurantID = '"+resID+"')");
         while (rs.next())
         {
             resName = rs.getString("restaurantName");

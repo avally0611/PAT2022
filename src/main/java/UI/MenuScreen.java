@@ -4,12 +4,12 @@
  */
 package UI;
 
-import backend.menuManager;
-import backend.restaurantsManager;
+import backend.MenuManager;
+import backend.RestaurantManager;
 import javax.swing.DefaultComboBoxModel;
-import UI.mainScreen;
-import backend.basketManager;
-import backend.sqlManager;
+import UI.MainScreen;
+import backend.BasketManager;
+import backend.SqlManager;
 import java.awt.Color;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,23 +23,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aaminah1
  */
-public class menuScreen extends javax.swing.JFrame {
+public class MenuScreen extends javax.swing.JFrame {
     static boolean resFood = false;
     static int count = 0;
 
     /**
      * 
      */
-    public menuScreen() throws SQLException {
+    public MenuScreen() throws SQLException {
         initComponents();
 
-        sqlManager.update("DELETE FROM currentBooking");
-        sqlManager.update("ALTER TABLE currentBooking AUTO_INCREMENT = 1");
-        String selectedRes = (String) mainScreen.restaurantComboBox.getSelectedItem();
-        DefaultComboBoxModel comboModel = new DefaultComboBoxModel ((menuManager.getSections(selectedRes)).toArray());
+        SqlManager.update("DELETE FROM currentBooking");
+        SqlManager.update("ALTER TABLE currentBooking AUTO_INCREMENT = 1");
+        String selectedRes = (String) MainScreen.restaurantComboBox.getSelectedItem();
+        DefaultComboBoxModel comboModel = new DefaultComboBoxModel ((MenuManager.getSections(selectedRes)).toArray());
 	sectionsComboBox.setModel(comboModel);
         
-        
+        //set size of column
+        foodTable.getColumnModel().getColumn(0).setPreferredWidth(300);
+        foodTable.getColumnModel().getColumn(0).setMaxWidth(300);
         
         
       
@@ -304,7 +306,7 @@ public class menuScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         //when you press this button it takes you to reservation screen but also saves yur order and total for the confirmation screen
         resFood = true;
-        reservationScreen rsvSc = new reservationScreen();
+        ReservationScreen rsvSc = new ReservationScreen();
         rsvSc.setVisible(true);
         dispose();
         //should call method which saves order somewhere as array
@@ -316,10 +318,13 @@ public class menuScreen extends javax.swing.JFrame {
             // TODO add your handling code here:
             String section = (String) sectionsComboBox.getSelectedItem();
             String colNames [] = {"Item", "Price"};
-            String [][] data = menuManager.getFood((String) mainScreen.restaurantComboBox.getSelectedItem(),section);
+            String [][] data = MenuManager.getFood((String) MainScreen.restaurantComboBox.getSelectedItem(),section);
             DefaultTableModel tableModel = new DefaultTableModel(data,colNames);
             foodTable.setModel(tableModel);
+            foodTable.getColumnModel().getColumn(0).setPreferredWidth(300);
+            foodTable.getColumnModel().getColumn(0).setMaxWidth(300);
         } 
+        
         catch (SQLException ex) 
         {
             System.out.println("error");
@@ -330,7 +335,7 @@ public class menuScreen extends javax.swing.JFrame {
 
     private void reservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationButtonActionPerformed
         // TODO add your handling code here:
-        reservationScreen rsvSc = new reservationScreen();
+        ReservationScreen rsvSc = new ReservationScreen();
         rsvSc.setVisible(true);
         dispose();
     }//GEN-LAST:event_reservationButtonActionPerformed
@@ -338,11 +343,11 @@ public class menuScreen extends javax.swing.JFrame {
     private void deliveryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryButtonActionPerformed
         try {
             // TODO add your handling code here:
-            basketScreen bskSc = new basketScreen();
+            BasketScreen bskSc = new BasketScreen();
             bskSc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(menuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deliveryButtonActionPerformed
 
@@ -354,10 +359,10 @@ public class menuScreen extends javax.swing.JFrame {
             int row = foodTable.getSelectedRow();
             String value = (String) foodTable.getModel().getValueAt(row, 0);
             String prices = (String) foodTable.getModel().getValueAt(row, 1);
-            menuManager.currentOrder(value, prices);
+            MenuManager.currentOrder(value, prices);
             
             //get order and add to list
-            ArrayList<String> listCurrent = menuManager.getCurrentOrder();
+            ArrayList<String> listCurrent = MenuManager.getCurrentOrder();
             
             DefaultListModel model = new DefaultListModel();
             for (int i = 0; i < listCurrent.size(); i++) {
@@ -367,7 +372,7 @@ public class menuScreen extends javax.swing.JFrame {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(menuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -379,11 +384,11 @@ public class menuScreen extends javax.swing.JFrame {
             int row = foodList.getSelectedIndex();
             String item = (String) foodList.getModel().getElementAt(row);
             row += 1;
-            menuManager.removeItem(item, row);
+            MenuManager.removeItem(item, row);
             
 
             
-            ArrayList<String> listCurrent = menuManager.getCurrentOrder();
+            ArrayList<String> listCurrent = MenuManager.getCurrentOrder();
             
             DefaultListModel model1 = new DefaultListModel();
             for (int i = 0; i < listCurrent.size(); i++) {
@@ -396,7 +401,7 @@ public class menuScreen extends javax.swing.JFrame {
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(menuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_removeButtonMouseClicked
@@ -405,11 +410,11 @@ public class menuScreen extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //get prices from selected rows
-            totalOutput.setText("R" + menuManager.getTotalPrice());
+            totalOutput.setText("R" + MenuManager.getTotalPrice());
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(menuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -432,14 +437,22 @@ public class menuScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -453,7 +466,7 @@ public class menuScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    menuScreen mnSc = new menuScreen();
+                    MenuScreen mnSc = new MenuScreen();
                     mnSc.setVisible(true);
                 } catch (SQLException ex) {
                     System.out.println("ERROR");;

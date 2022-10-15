@@ -4,7 +4,7 @@
  */
 package backend;
 
-import UI.loginScreen;
+import UI.LoginScreen;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -21,14 +21,14 @@ import javax.swing.JOptionPane;
  *
  * @author Aaminah
  */
-public class userManager {
+public class UserManager {
 
     //gets username and password entered and checks the database that the password is correct, returnss boolean
     public static boolean checkPassword(String userInput, String passInput) 
     {
         boolean loginValid = false;
         try {
-            ResultSet username = sqlManager.query("SELECT password FROM users WHERE username = '" + userInput +"'");
+            ResultSet username = SqlManager.query("SELECT password FROM users WHERE username = '" + userInput +"'");
             username.next();
             String resultPass = username.getString("password");
             if(resultPass.equals(passInput))
@@ -48,7 +48,7 @@ public class userManager {
     public static void addUser(String firstName, String lastName, String email, String number, String username, String password) throws SQLException
     {
         
-        sqlManager.update("INSERT INTO users (username, password, firstname, lastname, email, phone) VALUES ('" + username +"', '" + password +"', '" + firstName +"', '" + lastName +"', '" + email +"', '" + number +"')");
+        SqlManager.update("INSERT INTO users (username, password, firstname, lastname, email, phone) VALUES ('" + username +"', '" + password +"', '" + firstName +"', '" + lastName +"', '" + email +"', '" + number +"')");
     
     }
     

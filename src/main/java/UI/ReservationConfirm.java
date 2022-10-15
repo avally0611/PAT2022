@@ -4,27 +4,36 @@
  */
 package UI;
 
-import backend.menuManager;
-import backend.reservationManager;
+import backend.MenuManager;
+import backend.ReservationManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Aaminah1
  */
-public class reservationConfirm extends javax.swing.JFrame {
+public class ReservationConfirm extends javax.swing.JFrame {
 
     /**
      * Creates new form confirmedScreen
      */
-    public reservationConfirm() throws SQLException {
+    public ReservationConfirm() throws SQLException {
         initComponents();
         
-        guestOutput.setText(reservationManager.getNumGuests(reservationScreen.id) + "");
-        dateOutput.setText(reservationManager.getDates(reservationScreen.id) + "");
-        totalOutput.setText("R" + menuManager.getTotalPrice());
+        guestOutput.setText(ReservationManager.getNumGuests(ReservationScreen.id) + "");
+        dateOutput.setText(ReservationManager.getDates(ReservationScreen.id) + "");
+        totalOutput.setText("R" + MenuManager.getTotalPrice());
+        ArrayList<String> listCurrent = MenuManager.getCurrentOrder();
+            
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < listCurrent.size(); i++) {
+                model.add(i, listCurrent.get(i));
+            }
+            foodList.setModel(model);
         
     }
 
@@ -50,6 +59,8 @@ public class reservationConfirm extends javax.swing.JFrame {
         guestOutput = new javax.swing.JTextField();
         totalOutput = new javax.swing.JTextField();
         dateOutput = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        foodList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -57,58 +68,70 @@ public class reservationConfirm extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(234, 221, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(103, 80, 164));
 
-        exit.setText("x");
         exit.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
+        exit.setText("x");
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("RESERVATION CONFIRMED");
         jLabel1.setFont(new java.awt.Font("Arima Madurai", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("RESERVATION CONFIRMED");
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLayeredPane1.setOpaque(true);
 
-        jLabel2.setText("DETAILS");
         jLabel2.setFont(new java.awt.Font("Arima Madurai", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(33, 0, 93));
+        jLabel2.setText("DETAILS");
 
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
 
-        jLabel3.setText("Guests:");
         jLabel3.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(33, 0, 93));
+        jLabel3.setText("Guests:");
 
-        jLabel4.setText("Date:");
         jLabel4.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(33, 0, 93));
+        jLabel4.setText("Date:");
 
-        jLabel5.setText("Order:");
         jLabel5.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(33, 0, 93));
+        jLabel5.setText("Order:");
 
         jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
 
+        guestOutput.setEditable(false);
         guestOutput.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
-        guestOutput.setBorder(null);
         guestOutput.setForeground(new java.awt.Color(33, 0, 93));
+        guestOutput.setBorder(null);
 
+        totalOutput.setEditable(false);
         totalOutput.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
-        totalOutput.setBorder(null);
         totalOutput.setForeground(new java.awt.Color(33, 0, 93));
+        totalOutput.setBorder(null);
         totalOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalOutputActionPerformed(evt);
             }
         });
 
+        dateOutput.setEditable(false);
         dateOutput.setFont(new java.awt.Font("Arima Madurai", 1, 18)); // NOI18N
-        dateOutput.setBorder(null);
         dateOutput.setForeground(new java.awt.Color(33, 0, 93));
+        dateOutput.setBorder(null);
+
+        foodList.setBorder(null);
+        foodList.setFont(new java.awt.Font("Arima Madurai", 1, 14)); // NOI18N
+        foodList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(foodList);
 
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -119,41 +142,39 @@ public class reservationConfirm extends javax.swing.JFrame {
         jLayeredPane1.setLayer(guestOutput, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(totalOutput, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(dateOutput, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(15, 15, 15)
+                        .addComponent(guestOutput))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(22, 22, 22)
+                        .addComponent(totalOutput))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(33, 33, 33)
+                        .addComponent(dateOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 30, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jLabel2))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(totalOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(guestOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(22, 22, 22)))))
-                .addContainerGap(21, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                    .addContainerGap(263, Short.MAX_VALUE)
-                    .addComponent(dateOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(33, 33, 33)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator1))
+                .addContainerGap())
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,19 +188,18 @@ public class reservationConfirm extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(guestOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(dateOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(totalOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(139, 139, 139)
-                    .addComponent(dateOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(222, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
@@ -197,7 +217,7 @@ public class reservationConfirm extends javax.swing.JFrame {
                         .addGap(64, 64, 64))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86))))
+                        .addGap(54, 54, 54))))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +227,7 @@ public class reservationConfirm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,11 +248,11 @@ public class reservationConfirm extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         try {
             // TODO add your handling code here:
-            mainScreen mnSc = new mainScreen();
+            MainScreen mnSc = new MainScreen();
             mnSc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(reservationConfirm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationConfirm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitMouseClicked
 
@@ -257,14 +277,16 @@ public class reservationConfirm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(reservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(reservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(reservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(reservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationConfirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -272,9 +294,9 @@ public class reservationConfirm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new reservationConfirm().setVisible(true);
+                    new ReservationConfirm().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(reservationConfirm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReservationConfirm.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -283,6 +305,7 @@ public class reservationConfirm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dateOutput;
     private javax.swing.JLabel exit;
+    private javax.swing.JList<String> foodList;
     private javax.swing.JTextField guestOutput;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -290,6 +313,7 @@ public class reservationConfirm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private keeptoo.KGradientPanel kGradientPanel1;

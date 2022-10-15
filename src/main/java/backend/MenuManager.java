@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Aaminah1
  */
-public class menuManager {
+public class MenuManager {
     
 
     //get restaurant ID from database so we can use it later (getting food items)
@@ -18,7 +18,7 @@ public class menuManager {
     {
         int restaurantID = 0;
 
-        ResultSet resID = sqlManager.query("SELECT restaurantID FROM restaurants WHERE restaurantName = '"+selectedRes+"'");
+        ResultSet resID = SqlManager.query("SELECT restaurantID FROM restaurants WHERE restaurantName = '"+selectedRes+"'");
         while(resID.next())
         {
            restaurantID = resID.getInt("restaurantID");
@@ -33,7 +33,7 @@ public class menuManager {
         
         int restaurantID = getResID(selectedRes);
         
-        ResultSet rs = sqlManager.query("SELECT DISTINCT sectionName FROM section, menu WHERE (section.sectionID = menu.sectionID) AND menu.restaurantID = '"+restaurantID+"'");
+        ResultSet rs = SqlManager.query("SELECT DISTINCT sectionName FROM section, menu WHERE (section.sectionID = menu.sectionID) AND menu.restaurantID = '"+restaurantID+"'");
         while (rs.next())
         {
             String section = rs.getString("sectionName");
@@ -49,7 +49,7 @@ public class menuManager {
     public static int getSectionID(String section) throws SQLException
     {
         int secID = 0;
-        ResultSet sectionID = sqlManager.query("SELECT sectionID FROM section WHERE sectionName = '"+section+"'");
+        ResultSet sectionID = SqlManager.query("SELECT sectionID FROM section WHERE sectionName = '"+section+"'");
         while(sectionID.next())
         {
            secID = sectionID.getInt("sectionID");
@@ -66,7 +66,7 @@ public class menuManager {
         int resID = getResID(selectedRes);
         int secID = getSectionID(section);
 
-        ResultSet rs = sqlManager.query("SELECT name, price FROM menuItem, menu WHERE (menu.restaurantID = '"+resID+"') AND (menu.sectionID = '"+secID+"') AND  (menuItem.menuItemID = menu.itemID) ");
+        ResultSet rs = SqlManager.query("SELECT name, price FROM menuItem, menu WHERE (menu.restaurantID = '"+resID+"') AND (menu.sectionID = '"+secID+"') AND  (menuItem.menuItemID = menu.itemID) ");
         while (rs.next())
         {
             for (int i = 0; i < rows; i++) 
@@ -93,7 +93,7 @@ public class menuManager {
        
         int count = 0;
 
-        ResultSet rs = sqlManager.query("SELECT name FROM menuItem, menu WHERE (menuItem.menuItemID = menu.itemID) AND (menu.sectionID = '"+secID+"') AND (menu.restaurantID = '"+resID+"') ");
+        ResultSet rs = SqlManager.query("SELECT name FROM menuItem, menu WHERE (menuItem.menuItemID = menu.itemID) AND (menu.sectionID = '"+secID+"') AND (menu.restaurantID = '"+resID+"') ");
         while (rs.next())
         {
             count++;
@@ -110,7 +110,7 @@ public class menuManager {
     {
         
         
-        sqlManager.update("INSERT INTO currentBooking (name, price) VALUES ('" + selectedItem +"', '" + prices +"')");
+        SqlManager.update("INSERT INTO currentBooking (name, price) VALUES ('" + selectedItem +"', '" + prices +"')");
     
     }
     
@@ -119,7 +119,7 @@ public class menuManager {
     {
     
         ArrayList<String> listFoods = new ArrayList<String>();  
-        ResultSet foods = sqlManager.query("SELECT name FROM currentBooking");
+        ResultSet foods = SqlManager.query("SELECT name FROM currentBooking");
         while(foods.next())
         {
             String food = foods.getString("name");
@@ -132,7 +132,7 @@ public class menuManager {
     //gets the total price of the food items chosen and returns as double
     public static double getTotalPrice() throws SQLException
     {
-        ResultSet pricesList = sqlManager.query("SELECT price FROM currentBooking");
+        ResultSet pricesList = SqlManager.query("SELECT price FROM currentBooking");
         double totalPrice = 0;
         while (pricesList.next())
         {
@@ -145,9 +145,9 @@ public class menuManager {
     //user presses delete button and we remove from currentOrder table, we also have to reset the itemID auto-increment as it gets messed up when we delete an item 
     public static void removeItem(String item, int count) throws SQLException
     {
-        sqlManager.update("DELETE FROM currentBooking WHERE currentBookingID = '"+count+"'");
-        sqlManager.update("ALTER TABLE currentBooking DROP currentBookingID");
-        sqlManager.update("ALTER TABLE currentBooking ADD currentBookingID INT NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (currentBookingID)");
+        SqlManager.update("DELETE FROM currentBooking WHERE currentBookingID = '"+count+"'");
+        SqlManager.update("ALTER TABLE currentBooking DROP currentBookingID");
+        SqlManager.update("ALTER TABLE currentBooking ADD currentBookingID INT NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (currentBookingID)");
     }
     
  

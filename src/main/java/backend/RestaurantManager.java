@@ -18,13 +18,13 @@ import java.util.logging.Logger;
  *
  * @author Aaminah1
  */
-public class restaurantsManager {
+public class RestaurantManager {
     
     //this method gets the list of cities from database and returns it as ArrayList to populate combo box
     public static ArrayList<String> getCities() throws SQLException
     {
         ArrayList<String> citiesList = new ArrayList<String>();
-        ResultSet cities = sqlManager.query("SELECT areaName FROM area");
+        ResultSet cities = SqlManager.query("SELECT areaName FROM area");
         while (cities.next())
         {
             String city = cities.getString("areaName");
@@ -39,7 +39,7 @@ public class restaurantsManager {
     public static ArrayList<String> getRestaurants(String city) throws SQLException
     {
         ArrayList<String> restaurantsList = new ArrayList<String>();
-        ResultSet restaurantNames = sqlManager.query("SELECT restaurantName FROM pat_grade10.restaurants, area WHERE (restaurants.areaID = area.areaID) AND areaName = '" + city +"'");
+        ResultSet restaurantNames = SqlManager.query("SELECT restaurantName FROM pat_grade10.restaurants, area WHERE (restaurants.areaID = area.areaID) AND areaName = '" + city +"'");
         while (restaurantNames.next())
         {
             String restaurant = restaurantNames.getString("restaurantName");
@@ -55,7 +55,7 @@ public class restaurantsManager {
     {
         String restDesc = "";
         
-        ResultSet rs = sqlManager.query("SELECT restaurantDesc FROM restaurants WHERE restaurantName = '" + restaurant +"'");
+        ResultSet rs = SqlManager.query("SELECT restaurantDesc FROM restaurants WHERE restaurantName = '" + restaurant +"'");
         while (rs.next())
         {
             restDesc = rs.getString("restaurantDesc");

@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Aaminah1
  */
-public class sqlManager {
+public class SqlManager {
     
     //Note: most of this code was from Abban
     

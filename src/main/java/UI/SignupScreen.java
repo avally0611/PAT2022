@@ -4,7 +4,7 @@
  */
 package UI;
 
-import backend.userManager;
+import backend.UserManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author Aaminah1
  */
-public class signupScreen extends javax.swing.JFrame {
+public class SignupScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form signupScreen
      */
-    public signupScreen() {
+    public SignupScreen() {
         initComponents();
     }
 
@@ -257,14 +257,14 @@ public class signupScreen extends javax.swing.JFrame {
         String password = String.valueOf(passwordTextField.getPassword());
         
         try {
-            userManager.addUser(firstName, lastName, email, number, username, password);
-            loginScreen.user = username;
+            UserManager.addUser(firstName, lastName, email, number, username, password);
+            LoginScreen.user = username;
             JOptionPane.showMessageDialog(null, "SIGNUP SUCCESSFUL", "SIGNUP", JOptionPane.INFORMATION_MESSAGE);
-            mainScreen mnSc = new mainScreen();
+            MainScreen mnSc = new MainScreen();
             mnSc.setVisible(true);
             dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(signupScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignupScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_signupButtonActionPerformed
@@ -311,20 +311,21 @@ public class signupScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(signupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(signupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(signupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(signupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new signupScreen().setVisible(true);
+                new SignupScreen().setVisible(true);
             }
         });
     }

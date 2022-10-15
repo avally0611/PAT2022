@@ -4,7 +4,7 @@
  */
 package backend;
 
-import UI.loginScreen;
+import UI.LoginScreen;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,15 +12,15 @@ import java.sql.SQLException;
  *
  * @author Aaminah1
  */
-public class profileManager {
-    static String user = loginScreen.user;
+public class ProfileManager {
+    static String user = LoginScreen.user;
     
     //in order for the user to see their details, we have to get their ID so we can get THEIR info from the database
     public static int getUserID() throws SQLException
     {
         int userID = 0;
 
-        ResultSet ID = sqlManager.query("SELECT usersID FROM users WHERE userName = '"+user+"'");
+        ResultSet ID = SqlManager.query("SELECT usersID FROM users WHERE userName = '"+user+"'");
         while(ID.next())
         {
            userID = ID.getInt("usersID");
@@ -32,7 +32,7 @@ public class profileManager {
     public static String getFName() throws SQLException
     {
         String fName = "";
-        ResultSet rs = sqlManager.query("SELECT firstname FROM users WHERE usersID = '"+getUserID()+"'");
+        ResultSet rs = SqlManager.query("SELECT firstname FROM users WHERE usersID = '"+getUserID()+"'");
         while (rs.next())
         {
             fName = rs.getString("firstname");
@@ -44,7 +44,7 @@ public class profileManager {
     public static String getLName() throws SQLException
     {
         String LName = "";
-        ResultSet rs = sqlManager.query("SELECT lastname FROM users WHERE usersID = '"+getUserID()+"'");
+        ResultSet rs = SqlManager.query("SELECT lastname FROM users WHERE usersID = '"+getUserID()+"'");
         while (rs.next())
         {
             LName = rs.getString("lastname");
@@ -56,7 +56,7 @@ public class profileManager {
     public static String getUsername() throws SQLException
     {
         String username = "";
-        ResultSet rs = sqlManager.query("SELECT username FROM users WHERE usersID = '"+getUserID()+"'");
+        ResultSet rs = SqlManager.query("SELECT username FROM users WHERE usersID = '"+getUserID()+"'");
         while (rs.next())
         {
             username = rs.getString("username");
@@ -68,7 +68,7 @@ public class profileManager {
     public static String getPassword() throws SQLException
     {
         String pass = "";
-        ResultSet rs = sqlManager.query("SELECT password FROM users WHERE usersID = '"+getUserID()+"'");
+        ResultSet rs = SqlManager.query("SELECT password FROM users WHERE usersID = '"+getUserID()+"'");
         while (rs.next())
         {
             pass = rs.getString("password");
@@ -80,7 +80,7 @@ public class profileManager {
     public static String getEmail() throws SQLException
     {
         String email = "";
-        ResultSet rs = sqlManager.query("SELECT email FROM users WHERE usersID = '"+getUserID()+"'");
+        ResultSet rs = SqlManager.query("SELECT email FROM users WHERE usersID = '"+getUserID()+"'");
         while (rs.next())
         {
             email = rs.getString("email");
@@ -92,7 +92,7 @@ public class profileManager {
     public static String getPhone() throws SQLException
     {
         String phone = "";
-        ResultSet rs = sqlManager.query("SELECT phone FROM users WHERE usersID = '"+getUserID()+"'");
+        ResultSet rs = SqlManager.query("SELECT phone FROM users WHERE usersID = '"+getUserID()+"'");
         while (rs.next())
         {
             phone = rs.getString("phone");
@@ -104,7 +104,7 @@ public class profileManager {
     public static void updateDetails(String username, String password, String firstName, String lastName, String email, String number ) throws SQLException
     {
         int userID = getUserID();
-        sqlManager.update("INSERT INTO users (users_id, username, password, first_name, last_name, email, phone) VALUES ('" + username +"', '" + password +"', '" + firstName +"', '" + lastName +"', '" + email +"', '" + number +"') WHERE (usersID = '"+ userID+"')");
+        SqlManager.update("UPDATE users SET username = '" + username +"', password = '" + password +"', firstname = '" + firstName +"', lastname = '" + lastName +"', email = '" + email +"', phone = '" + number +"' WHERE usersID = '"+userID+"'");
 
 
     }
