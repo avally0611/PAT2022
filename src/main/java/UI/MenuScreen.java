@@ -33,8 +33,10 @@ public class MenuScreen extends javax.swing.JFrame {
     public MenuScreen() throws SQLException {
         initComponents();
 
+        //reset the currentBooking table each time & reset auto-incrementer so that it starts from 1
         SqlManager.update("DELETE FROM currentBooking");
         SqlManager.update("ALTER TABLE currentBooking AUTO_INCREMENT = 1");
+        
         String selectedRes = (String) MainScreen.restaurantComboBox.getSelectedItem();
         DefaultComboBoxModel comboModel = new DefaultComboBoxModel ((MenuManager.getSections(selectedRes)).toArray());
 	sectionsComboBox.setModel(comboModel);
@@ -423,7 +425,7 @@ public class MenuScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void MenuScreen(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

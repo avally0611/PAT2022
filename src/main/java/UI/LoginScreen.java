@@ -49,6 +49,7 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        showPasswordButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -65,14 +66,14 @@ public class LoginScreen extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(103, 80, 164));
@@ -83,6 +84,11 @@ public class LoginScreen extends javax.swing.JFrame {
         nameTextField.setForeground(new java.awt.Color(255, 255, 255));
         nameTextField.setText("Username");
         nameTextField.setBorder(null);
+        nameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nameTextFieldMouseClicked(evt);
+            }
+        });
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextFieldActionPerformed(evt);
@@ -95,12 +101,17 @@ public class LoginScreen extends javax.swing.JFrame {
         passwordtextField.setForeground(new java.awt.Color(255, 255, 255));
         passwordtextField.setText("Password");
         passwordtextField.setBorder(null);
+        passwordtextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordtextFieldMouseClicked(evt);
+            }
+        });
         passwordtextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordtextFieldActionPerformed(evt);
             }
         });
-        jPanel3.add(passwordtextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 185, 30));
+        jPanel3.add(passwordtextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 160, 30));
 
         jSeparator1.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator1.setForeground(new java.awt.Color(33, 0, 93));
@@ -164,6 +175,14 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-user-38.png"))); // NOI18N
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 40, 30));
 
+        showPasswordButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        showPasswordButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPasswordButtonMouseClicked(evt);
+            }
+        });
+        jPanel3.add(showPasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 50, 50));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,15 +190,12 @@ public class LoginScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,6 +269,24 @@ public class LoginScreen extends javax.swing.JFrame {
     
     }//GEN-LAST:event_signinButtonMouseClicked
 
+    private void nameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameTextFieldMouseClicked
+        // TODO add your handling code here:
+        nameTextField.setText("");
+    }//GEN-LAST:event_nameTextFieldMouseClicked
+
+    private void passwordtextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordtextFieldMouseClicked
+        // TODO add your handling code here:
+        passwordtextField.setText("");
+
+    }//GEN-LAST:event_passwordtextFieldMouseClicked
+
+    private void showPasswordButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordButtonMouseClicked
+        // TODO add your handling code here:
+        //show password
+        passwordtextField.setEchoChar((char)0);
+
+    }//GEN-LAST:event_showPasswordButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -302,6 +336,7 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JPasswordField passwordtextField;
+    private javax.swing.JLabel showPasswordButton;
     private javax.swing.JButton signinButton;
     private javax.swing.JButton signupButton;
     // End of variables declaration//GEN-END:variables

@@ -53,6 +53,7 @@ public class SignupScreen extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         emailTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        showPasswordButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -86,12 +87,12 @@ public class SignupScreen extends javax.swing.JFrame {
         passwordTextField.setForeground(new java.awt.Color(255, 255, 255));
         passwordTextField.setText("Password");
         passwordTextField.setBorder(null);
-        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextFieldActionPerformed(evt);
+        passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordTextFieldMouseClicked(evt);
             }
         });
-        jPanel3.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 185, 30));
+        jPanel3.add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 140, 30));
 
         jSeparator1.setBackground(new java.awt.Color(33, 0, 93));
         jSeparator1.setForeground(new java.awt.Color(33, 0, 93));
@@ -118,9 +119,9 @@ public class SignupScreen extends javax.swing.JFrame {
         lastNameTextField.setForeground(new java.awt.Color(255, 255, 255));
         lastNameTextField.setText("last name...");
         lastNameTextField.setBorder(null);
-        lastNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameTextFieldActionPerformed(evt);
+        lastNameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lastNameTextFieldMouseClicked(evt);
             }
         });
         jPanel3.add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 185, 30));
@@ -134,9 +135,9 @@ public class SignupScreen extends javax.swing.JFrame {
         numberTextField.setForeground(new java.awt.Color(255, 255, 255));
         numberTextField.setText("number...");
         numberTextField.setBorder(null);
-        numberTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numberTextFieldActionPerformed(evt);
+        numberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                numberTextFieldMouseClicked(evt);
             }
         });
         jPanel3.add(numberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 185, 30));
@@ -150,9 +151,9 @@ public class SignupScreen extends javax.swing.JFrame {
         firstNameTextField.setForeground(new java.awt.Color(255, 255, 255));
         firstNameTextField.setText("first name...");
         firstNameTextField.setBorder(null);
-        firstNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameTextFieldActionPerformed(evt);
+        firstNameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                firstNameTextFieldMouseClicked(evt);
             }
         });
         jPanel3.add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 185, 30));
@@ -166,9 +167,9 @@ public class SignupScreen extends javax.swing.JFrame {
         usernameTextField.setForeground(new java.awt.Color(255, 255, 255));
         usernameTextField.setText("username...");
         usernameTextField.setBorder(null);
-        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameTextFieldActionPerformed(evt);
+        usernameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usernameTextFieldMouseClicked(evt);
             }
         });
         jPanel3.add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 185, 30));
@@ -196,9 +197,9 @@ public class SignupScreen extends javax.swing.JFrame {
         emailTextField1.setForeground(new java.awt.Color(255, 255, 255));
         emailTextField1.setText("email...");
         emailTextField1.setBorder(null);
-        emailTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField1ActionPerformed(evt);
+        emailTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emailTextField1MouseClicked(evt);
             }
         });
         jPanel3.add(emailTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 185, 30));
@@ -209,15 +210,23 @@ public class SignupScreen extends javax.swing.JFrame {
         jLabel1.setText("SIGNUP ");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
+        showPasswordButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        showPasswordButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPasswordButtonMouseClicked(evt);
+            }
+        });
+        jPanel3.add(showPasswordButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 50, 50));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +241,7 @@ public class SignupScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,10 +251,6 @@ public class SignupScreen extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextFieldActionPerformed
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         // TODO add your handling code here:
@@ -269,30 +274,52 @@ public class SignupScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_signupButtonActionPerformed
 
-    private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameTextFieldActionPerformed
-
-    private void numberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numberTextFieldActionPerformed
-
-    private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameTextFieldActionPerformed
-
-    private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameTextFieldActionPerformed
-
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_exitMouseClicked
 
-    private void emailTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField1ActionPerformed
+    private void firstNameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstNameTextFieldMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField1ActionPerformed
+        firstNameTextField.setText("");
+
+    }//GEN-LAST:event_firstNameTextFieldMouseClicked
+
+    private void lastNameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lastNameTextFieldMouseClicked
+        // TODO add your handling code here:
+        lastNameTextField.setText("");
+
+    }//GEN-LAST:event_lastNameTextFieldMouseClicked
+
+    private void emailTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailTextField1MouseClicked
+        // TODO add your handling code here:
+        emailTextField1.setText("");
+
+    }//GEN-LAST:event_emailTextField1MouseClicked
+
+    private void numberTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numberTextFieldMouseClicked
+        // TODO add your handling code here:
+        numberTextField.setText("");
+
+    }//GEN-LAST:event_numberTextFieldMouseClicked
+
+    private void usernameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameTextFieldMouseClicked
+        // TODO add your handling code here:
+        usernameTextField.setText("");
+
+    }//GEN-LAST:event_usernameTextFieldMouseClicked
+
+    private void passwordTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMouseClicked
+        // TODO add your handling code here:
+        passwordTextField.setText("");
+
+    }//GEN-LAST:event_passwordTextFieldMouseClicked
+
+    private void showPasswordButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordButtonMouseClicked
+        // TODO add your handling code here:
+        passwordTextField.setEchoChar((char)0);
+        
+    }//GEN-LAST:event_showPasswordButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -349,6 +376,7 @@ public class SignupScreen extends javax.swing.JFrame {
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JTextField numberTextField;
     private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JLabel showPasswordButton;
     private javax.swing.JButton signupButton;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables

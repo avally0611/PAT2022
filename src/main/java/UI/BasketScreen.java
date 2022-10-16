@@ -11,6 +11,7 @@ import backend.MenuManager;
 import backend.ReservationManager;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -365,7 +366,8 @@ public class BasketScreen extends javax.swing.JFrame {
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         try {
             // TODO add your handling code here:
-            id = BasketManager.addBookingDetails(type);
+            LocalDateTime date = dateSpinner.getDateTimeStrict();
+            id = BasketManager.addBookingDetails(date, type);
             JOptionPane.showMessageDialog(null, "Your booking has been confirmed", "Information", JOptionPane.INFORMATION_MESSAGE);
             MainScreen mSc = new MainScreen();
             mSc.setVisible(true);
@@ -378,7 +380,7 @@ public class BasketScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void BasketScreen(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

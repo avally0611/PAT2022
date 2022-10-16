@@ -49,13 +49,15 @@ public class BasketManager {
         return numRows;
     }
     
-    public static int addBookingDetails(String type) throws SQLException
+    
+    //adds delivery/collection details into "bookings" table
+    public static int addBookingDetails(LocalDateTime date, String type) throws SQLException
     {
         int userID = ProfileManager.getUserID();
         int resID = MenuManager.getResID((String) MainScreen.restaurantComboBox.getSelectedItem());
         
        int bookingID = 0;
-        SqlManager.update("INSERT INTO bookings (restaurantID, userID, type) VALUES ('" + resID +"', '" + userID +"', '" + type +"')");
+        SqlManager.update("INSERT INTO bookings (date, restaurantID, userID, type) VALUES ("+date+"','" + resID +"', '" + userID +"', '" + type +"')");
         ResultSet booking = SqlManager.query("SELECT bookingID FROM bookings");
         while (booking.next())
         {
