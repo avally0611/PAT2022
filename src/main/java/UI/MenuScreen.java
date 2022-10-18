@@ -300,8 +300,14 @@ public class MenuScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        // TODO add your handling code here:
-        dispose();
+        try {
+            // TODO add your handling code here:
+            MainScreen mnSc = new MainScreen();
+            mnSc.setVisible(true);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_exitMouseClicked
 
     private void foodReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodReservationButtonActionPerformed

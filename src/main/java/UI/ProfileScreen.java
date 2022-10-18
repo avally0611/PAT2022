@@ -250,7 +250,7 @@ public class ProfileScreen extends javax.swing.JFrame {
                         .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(kGradientPanel5Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+                .addGap(61, 61, 61)
                 .addComponent(welcomeLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

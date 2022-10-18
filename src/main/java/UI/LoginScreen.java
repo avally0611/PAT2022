@@ -51,7 +51,7 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         showPasswordButton = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setUndecorated(true);
 
@@ -234,7 +234,8 @@ public class LoginScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userInput = nameTextField.getText();
         String pass = String.valueOf(passwordtextField.getPassword());
-        
+        user = userInput;
+
         boolean loginResult;
         try {
             loginResult = UserManager.checkPassword(userInput, pass);
@@ -244,7 +245,6 @@ public class LoginScreen extends javax.swing.JFrame {
             MainScreen msc = new MainScreen();
             msc.setVisible(true);
             dispose();
-            user = userInput;
             }
             else
             {
