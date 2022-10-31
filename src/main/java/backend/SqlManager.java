@@ -19,9 +19,9 @@ public class SqlManager {
     //Note: most of this code was from Abban
     
     private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/pat_grade10";
-    private static final String user = "root";
-    private static final String pass = "1786";
+    private static final String url = "jdbc:mysql://102.130.115.69:3306/aaminahvDB";
+    private static final String user = "aaminahv";
+    private static final String pass = "Reddam2021";
 
     //Add, remove or edit something in a table in the database
     public static void update(String update) throws SQLException 

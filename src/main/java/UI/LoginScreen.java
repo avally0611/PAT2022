@@ -244,10 +244,10 @@ public class LoginScreen extends javax.swing.JFrame {
             loginResult = UserManager.checkPassword(userInput, pass);
             if (loginResult)
             {
-            JOptionPane.showMessageDialog(null, "Your details are correct", "Information", JOptionPane.INFORMATION_MESSAGE);
-            MainScreen msc = new MainScreen();
-            msc.setVisible(true);
-            dispose();
+                JOptionPane.showMessageDialog(null, "Your details are correct", "Information", JOptionPane.INFORMATION_MESSAGE);
+                MainScreen msc = new MainScreen();
+                dispose();
+                msc.setVisible(true);
             }
             else
             {
